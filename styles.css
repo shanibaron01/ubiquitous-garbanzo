@@ -1,0 +1,758 @@
+/* ==========================================================================
+   Project Walnut — Moody Velvet Jazz Theme (Mobile Optimized)
+   ========================================================================== */
+
+:root {
+  /* Album-Inspired Dark Palette */
+  --color-bg: #09080c;           /* Deep midnight black from the album shadow */
+  --color-text: #e5e3e8;         /* Crisp, high-end soft silver-white for readability */
+  --color-text-muted: #8e8999;   /* Muted indigo-gray for secondary elements */
+  --color-accent: #7a6ff0;       /* The signature vibrant album indigo/violet */
+  --color-border: #1c1a22;       /* Subtle dark purple-gray separator lines */
+
+  /* Elegant cross-platform web-safe font stacks */
+  --font-serif: "Times New Roman", Times, Baskerville, Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Fluid Layout Metrics */
+  --section-padding: clamp(4rem, 10vw, 14rem); 
+  --max-width-desktop: 1200px;
+  --max-width-reading: 700px;
+}
+
+/* ==========================================================================
+   Base Reset & Global Typography
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* Native premium smooth scrolling */
+  background-color: var(--color-bg);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.section-title {
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  letter-spacing: -0.01em;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.body-editorial {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 3vw, 1.8rem) !important; 
+  line-height: 1.6;                     
+  color: var(--color-text);
+  margin-bottom: 2rem;
+}
+.body-editorial:last-child { margin-bottom: 0; }
+
+/* Accessibility Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 2rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: 1rem 2rem;
+  z-index: 9999;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: top 0.3s ease;
+}
+.skip-link:focus { top: 2rem; }
+
+/* ==========================================================================
+   Layout Grid & Containers
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width-desktop);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 5rem); 
+}
+
+.container--narrow {
+  max-width: var(--max-width-reading);
+}
+
+.grid-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem; 
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .grid-split {
+    grid-template-columns: 5fr 6fr;
+    gap: clamp(4rem, 8vw, 10rem);
+  }
+}
+
+/* ==========================================================================
+   Navigation Menu — High-Fashion Editorial Masthead Pop
+   ========================================================================== */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.25rem clamp(1.25rem, 5vw, 5rem); 
+  mix-blend-mode: normal !important; /* Overrides old difference blending so text stays sharp */
+}
+
+@media (min-width: 1024px) {
+  .site-header {
+    padding: 2.5rem clamp(1.5rem, 6vw, 5rem); 
+  }
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: clamp(1.25rem, 4vw, 3.5rem);
+  justify-content: flex-end;
+}
+
+.nav-link {
+  font-family: var(--font-sans) !important;
+  font-size: 0.7rem !important;          
+  text-transform: uppercase !important;
+  letter-spacing: 0.3em !important;     /* High-Fashion ultra-wide letter tracking */
+  color: #ffffff !important;
+  opacity: 0.9 !important;               
+  font-weight: 500 !important;
+  text-decoration: none;
+  transition: all 0.3s ease !important;
+}
+
+.nav-link:hover {
+  color: var(--color-accent) !important; /* Fades into signature velvet violet */
+  opacity: 1 !important;
+}
+
+@media (min-width: 768px) {
+  .nav-link { font-size: 0.75rem !important; }
+}
+
+/* ==========================================================================
+   Section 1: Hero Layout — High-Fashion Magazine Overhaul
+   ========================================================================== */
+
+.hero-section {
+  position: relative !important;
+  width: 100% !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  display: block !important; 
+}
+
+/* Photo wrapper with built-in radial lens vignette */
+.hero-image-wrapper {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1 !important;
+}
+
+.hero-image-wrapper::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Dark pocket mask layer to force white text to break cleanly from background sky */
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 75%) !important;
+  z-index: 2 !important;
+  pointer-events: none;
+}
+
+.hero-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  filter: grayscale(100%) contrast(125%) brightness(0.9);
+}
+
+/* Absolute vertical layout centering for the text container */
+.hero-text-block {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 10 !important;
+  text-align: center;
+  width: 100%;
+  padding: 0 1.5rem;
+  margin: 0 !important;
+}
+
+.hero-name {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(3rem, 8vw, 6.5rem) !important; 
+  font-weight: 400 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.16em !important;            
+  color: #ffffff !important;
+  line-height: 1.1 !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.hero-tagline {
+  font-family: var(--font-sans) !important;
+  font-size: clamp(0.75rem, 1.8vw, 1rem) !important; 
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.35em !important;                  /* Ultra-spaced high-end print design */
+  color: rgba(255, 255, 255, 0.95) !important;        
+  margin: 0 !important;
+}
+
+/* Photographer Credit Micro-Typography */
+.hero-photo-credit {
+  position: absolute !important;
+  bottom: 2.5rem !important;             
+  left: clamp(1.25rem, 5vw, 5rem) !important;
+  z-index: 100 !important;
+  
+  color: #ffffff !important;
+  opacity: 0.85 !important;              
+  font-family: var(--font-sans) !important;
+  font-size: 0.58rem !important;         
+  text-transform: uppercase !important;
+  letter-spacing: 0.35em !important;    
+  display: block !important;
+  
+  /* Premium layout accent line */
+  border-left: 2px solid var(--color-accent) !important;
+  padding-left: 0.75rem !important;
+  line-height: 1 !important;
+}
+
+/* ==========================================================================
+   Section 2: High-Fashion Magazine About Layout
+   ========================================================================== */
+
+.about-section {
+  /* Matte archival ink black background */
+  background-color: #0a0a0d !important; 
+  width: 100%;
+  padding-top: clamp(5rem, 12vw, 10rem) !important;
+  padding-bottom: clamp(5rem, 12vw, 10rem) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.about-section .container {
+  display: grid !important;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  text-align: left !important; 
+}
+
+@media (min-width: 1024px) {
+  .about-section .container {
+    /* Classic print grid split: left label margin column, right copy canvas */
+    grid-template-columns: 3fr 7fr !important;
+    gap: clamp(3rem, 6vw, 8rem) !important;
+  }
+}
+
+.about-section .body-editorial {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem) !important; 
+  line-height: 1.75 !important;                        
+  color: #dbd9e0 !important;                            
+  letter-spacing: -0.01em;
+  max-width: 680px;
+}
+
+/* Magazine Initial Drop Cap */
+.about-section .body-editorial::first-letter {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(3.5rem, 7vw, 5rem) !important;       
+  font-weight: 400;
+  float: left;
+  line-height: 0.85 !important;
+  margin-top: 0.1em;
+  margin-right: 0.12em;
+  color: #ffffff !important;                            
+}
+
+/* ==========================================================================
+   Section 3: High-Fashion Magazine Record Feature Overhaul
+   ========================================================================== */
+
+.record-section {
+  background-color: #09080c !important; 
+  padding-top: clamp(6rem, 12vw, 12rem) !important;
+  padding-bottom: clamp(6rem, 12vw, 12rem) !important;
+}
+
+.record-text-block .editorial-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: var(--color-accent); 
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.record-main-title {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(2.5rem, 5vw, 3.8rem) !important; 
+  letter-spacing: -0.02em !important;
+  color: #ffffff !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Elegant Liner Notes Typography Block */
+.album-liner-notes {
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.liner-header {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.liner-body {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  font-style: italic; 
+}
+
+/* Minimalist Editorial Underline Registry Input */
+.record-text-block .newsletter-label {
+  font-family: var(--font-sans) !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.2em !important;
+  color: var(--color-text-muted) !important;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.record-text-block .newsletter-form {
+  margin-top: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.record-text-block .newsletter-group {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important; 
+  padding-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row !important; /* Forces row clean lines on all devices */
+  gap: 0px !important;
+}
+
+.record-text-block .newsletter-input {
+  flex: 1;
+  background: transparent;
+  border: none !important;
+  padding: 0.75rem 0.25rem;
+  font-family: var(--font-serif) !important;
+  font-size: 1rem !important;
+  font-style: italic;
+  color: #ffffff !important;
+  outline: none;
+}
+
+.record-text-block .newsletter-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* High-Fashion Text Link Button Element */
+.newsletter-btn-editorial {
+  background: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.25em !important;
+  padding: 0.5rem 0 0.5rem 1.5rem !important;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.3s ease !important;
+}
+
+.newsletter-btn-editorial span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  color: var(--color-accent); 
+}
+
+.newsletter-btn-editorial:hover {
+  color: var(--color-accent) !important;
+}
+
+.newsletter-btn-editorial:hover span {
+  transform: translateX(4px); 
+}
+
+/* Square Album Art Custom Layout Scaling */
+.image-reveal-frame {
+  aspect-ratio: 1 / 1 !important;
+  overflow: visible !important;   
+  height: auto !important;
+  background-color: transparent !important;
+}
+
+@media (max-width: 1023px) {
+  .image-reveal-frame {
+    margin-top: 2.5rem; 
+  }
+}
+
+.record-img,
+.reveal-img {
+  width: 100% !important;
+  max-width: 440px;               
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important; 
+  object-fit: cover !important;   
+  display: block;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.08); 
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 
+              0 0 35px rgba(122, 111, 240, 0.12); 
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.record-img:hover,
+.reveal-img:hover {
+  transform: scale(1.015) translateY(-4px);
+  box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.9), 
+              0 0 45px rgba(122, 111, 240, 0.22);
+}
+
+@media (min-width: 1024px) {
+  .grid-split {
+    align-items: center !important; 
+  }
+}
+
+/* ==========================================================================
+   Section 4: Connect & Footer Elements
+   ========================================================================== */
+
+.connect-section {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.connect-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem; 
+  margin-top: 2.5rem;
+}
+
+.connect-links p {
+  margin: 0;
+}
+
+.connect-item {
+  font-size: clamp(1.35rem, 4vw, 2.2rem); 
+  font-weight: 400;
+  color: #ffffff;                      
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.connect-item:hover {
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+.connect-email-text {
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  font-weight: 400;
+  color: var(--color-text-muted);       
+  letter-spacing: 0.5px;
+  margin-top: 0.5rem;
+  word-break: break-all; 
+  text-align: center;
+  cursor: default;
+}
+
+.connect-footer { text-align: center; }
+.footer-note {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--color-text-muted);
+}
+.text-center { text-align: center; }
+
+/* ==========================================================================
+   Premium Native CSS Smooth Reveals
+   ========================================================================== */
+
+.reveal-element {
+  opacity: 0;
+  transform: translateY(15px); 
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-element.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-element {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  html { scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================
+   Section 4: Connect & Footer — High-Fashion Directory Grid
+   ========================================================================== */
+
+.connect-section {
+  background-color: #0a0a0d !important;
+  width: 100%;
+  padding-top: clamp(6rem, 12vw, 12rem) !important;
+  padding-bottom: clamp(3rem, 6vw, 5rem) !important; /* Tighter baseline for the absolute footer alignment */
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Asymmetric Magazine Column Alignment Split */
+.connect-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+@media (min-width: 1024px) {
+  .connect-grid {
+    /* 30% Meta Label Width, 70% Sub-Column Grid Space */
+    grid-template-columns: 3fr 7fr !important;
+    gap: clamp(3rem, 6vw, 8rem) !important;
+  }
+}
+
+/* Index Signaling Typography */
+.connect-index {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: var(--color-accent); /* Signature Velvet Violet Index */
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.connect-title {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(2rem, 4vw, 2.8rem) !important;
+  color: #ffffff !important;
+  font-weight: 400;
+}
+
+/* Internal Directory Grid Links */
+.connect-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .connect-content {
+    grid-template-columns: 1fr 1fr; /* Split socials and email into perfect parallel paths */
+    gap: 2rem;
+  }
+}
+
+.connect-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.connect-label {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.connect-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* High-End Serif Navigation States */
+.connect-link-editorial {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.connect-link-editorial:hover {
+  color: var(--color-accent);
+  transform: translateX(3px); /* Subtle physical glide on hover */
+}
+
+/* Minimalist Print-Directory Email Text */
+.connect-email-editorial {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  color: #dbd9e0;
+  text-decoration: none;
+  word-break: break-all;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.connect-email-editorial:hover {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   The Absolute Base Colophon Layout
+   ========================================================================== */
+
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .site-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.footer-credit {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+}
+
+.back-to-top {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.back-to-top span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.back-to-top:hover {
+  color: var(--color-accent);
+}
+
+.back-to-top:hover span {
+  transform: translateY(-3px); /* Arrow rises upward cleanly */
+}
+
+/* ==========================================================================
+   Newsletter Submission Feedback Typography
+   ========================================================================== */
+.form-status-message {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 1.25rem;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  min-height: 1.2rem;
+}
+
+.form-status-message.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-status-message.success {
+  color: var(--color-accent); /* Elegant signature velvet violet confirmation text */
+}
+
+.form-status-message.error {
+  color: #ff6b6b; /* Muted editorial warning red to signal input friction */
+}
+
+/* Custom utility to enhance the interactive feel of the email element */
+.connect-email-editorial {
+  cursor: copy !important; /* Changes mouse pointer to a "copy" indicator on hover */
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), font-style 0.3s ease;
+}
